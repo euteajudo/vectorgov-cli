@@ -2,7 +2,9 @@
 
 Cliente de linha de comando para a API VectorGov - Busca semântica em legislação brasileira.
 
-[![PyPI version](https://badge.fury.io/py/vectorgov-cli.svg)](https://badge.fury.io/py/vectorgov-cli)
+[![PyPI version](https://img.shields.io/pypi/v/vectorgov-cli.svg)](https://pypi.org/project/vectorgov-cli/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/vectorgov-cli.svg)](https://pypi.org/project/vectorgov-cli/)
+[![Python versions](https://img.shields.io/pypi/pyversions/vectorgov-cli.svg)](https://pypi.org/project/vectorgov-cli/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Instalação
@@ -78,9 +80,9 @@ print(response.choices[0].message.content)
 ### Feedback
 
 ```bash
-# Após uma busca, use o query_id para feedback
-vectorgov feedback abc123def456 --like
-vectorgov feedback abc123def456 --dislike
+# Apos uma busca, use o query_id para feedback
+vectorgov feedback send abc123def456 --like
+vectorgov feedback send abc123def456 --dislike
 ```
 
 ### Documentos
@@ -176,7 +178,7 @@ vectorgov search "licitação" --output json > resultados.json
 
 # Usar em scripts
 QUERY_ID=$(vectorgov search "ETP" --raw | jq -r '.query_id')
-vectorgov feedback $QUERY_ID --like
+vectorgov feedback send $QUERY_ID --like
 
 # Obter contexto para LLM
 vectorgov ask "O que é ETP?" --raw | jq '.messages'
