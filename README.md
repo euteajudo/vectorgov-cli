@@ -85,6 +85,42 @@ vectorgov feedback send abc123def456 --like
 vectorgov feedback send abc123def456 --dislike
 ```
 
+### Estimativa de Tokens
+
+Estima quantos tokens uma busca consumiria, util para planejar uso com LLMs.
+
+```bash
+# Estimativa basica
+vectorgov tokens "O que e ETP?"
+
+# Com mais resultados
+vectorgov tokens "pesquisa de precos" --top-k 10
+
+# Saida em JSON
+vectorgov tokens "licitacao" --output json
+```
+
+Exemplo de saida:
+
+```
+Estimativa de Tokens
++-----------------+------------+---------------------------+
+| Componente      |     Tokens | Descricao                 |
++-----------------+------------+---------------------------+
+| Contexto        |      1,234 | 5 hits da busca           |
+| System Prompt   |        200 | Instrucoes do sistema     |
+| Query           |          5 | Pergunta do usuario       |
+|-----------------|------------|---------------------------|
+| Total           |      1,439 | 5,432 caracteres          |
++-----------------+------------+---------------------------+
+
+Comparacao com limites de modelos:
+  GPT-4o: OK 1.1% (1,439/128,000)
+  GPT-4o-mini: OK 1.1% (1,439/128,000)
+  Claude 3.5 Sonnet: OK 0.7% (1,439/200,000)
+  Gemini 2.0 Flash: OK 0.1% (1,439/1,000,000)
+```
+
 ### Documentos
 
 ```bash
